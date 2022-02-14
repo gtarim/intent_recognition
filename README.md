@@ -48,13 +48,14 @@ $ ./test/intent_recognition_test
 **Note:** You should be in project folder and must be built the project.
 
 **Some of Test results:**
+```
 What is the weather like today? => Prints (Intent: Get Weather)
 What is the weather like in Paris today? => Prints (Intent: Get Weather City)
 Tell me about fact => Prints (Intent: Get Fact)
 Can you open the door? => Prints (Intent: Set Door)
 May you change the AC to 22 degree ? => Prints (Intent: Unrecognized intent!)
 Could you open window? => Prints (Intent: Unrecognized intent!)
-
+```
 ### Algorithm
 While selection of pattern search algorithm. Focused multi and single pattern matcher algoritms.
 One of the focused algorithms listed below.

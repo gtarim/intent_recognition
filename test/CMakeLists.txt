@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.5)
+
+project( intent_recognition_test )
+
+enable_testing()
+
+find_package(GTest REQUIRED)
+include(GoogleTest)
+
+include_directories( ../ )
+
+add_executable(intent_recognition_test test.cpp)
+
+target_link_libraries(intent_recognition_test gtest_main)
+
+add_test(NAME intent_recognition_test COMMAND intent_recognition_test)
+gtest_discover_tests(intent_recognition_test)
+

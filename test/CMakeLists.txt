@@ -16,3 +16,4 @@ target_link_libraries(intent_recognition_test gtest_main)
 add_test(NAME intent_recognition_test COMMAND intent_recognition_test)
 gtest_discover_tests(intent_recognition_test)
 
+set_target_properties(intent_recognition_test PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../test")

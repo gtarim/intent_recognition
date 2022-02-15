@@ -2,3 +2,4 @@
 build
 intent_recognition
 .DS_Store
+test/intent_recognition_test

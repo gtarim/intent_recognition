@@ -7,18 +7,14 @@ if(NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
-option(TEST "Build the tests" OFF)
-if( TEST )
-    message("-- test enabled !")
-    enable_testing()
-    add_subdirectory(third_party/googletest)
-    add_subdirectory(test)
-endif()
+enable_testing()
+add_subdirectory(third_party/googletest)
+add_subdirectory(test)
 
 set(CMAKE_CXX_FLAGS "-O3")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
 
-set(SOURCES main.cpp)
+set( SOURCES main.cpp recognition.cpp )
 
 add_executable(intent_recognition ${SOURCES})
 

@@ -1,0 +1,2 @@
+city=Paris,Berlin,Istanbul
+car=Mercedes

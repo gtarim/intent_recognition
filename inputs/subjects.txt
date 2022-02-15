@@ -1,0 +1,4 @@
+weather=get=city
+fact=get
+temperature=get,set=city,car
+door=set,get=car

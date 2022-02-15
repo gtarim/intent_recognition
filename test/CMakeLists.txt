@@ -4,7 +4,6 @@ project( intent_recognition_test )
 
 enable_testing()
 
-find_package( GTest REQUIRED )
 include( GoogleTest )
 
 include_directories( ../ )

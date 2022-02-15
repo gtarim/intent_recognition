@@ -19,7 +19,7 @@ Software developed with clang and gcc compiler.
 
 ### About
 
-- Only hand-written source code. Didn't used any third-party lib for depencencies.
+- Only hand-written source code. Didn't used any third-party lib for depencencies. (except gtest)
 
 ### Prerequisites
 - [CMake](https://cmake.org/) (version 3.5 or newer) is the recommended build system for building the intent recognition.
@@ -73,5 +73,6 @@ Performance test result under below senario:
 - 120 pattern
 - search intance every for single pattern ( except std::regex )
 
-![Performance output](/docs/perf_out.png "Performance output")
 
+![](/docs/perf_out.png "Performance output")
+- [Quick benchmark result](https://quick-bench.com/q/J21M9tvvgdb7VfIQ2Pb78cIQ_0w)

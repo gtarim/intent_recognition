@@ -1,6 +1,6 @@
 #include "recognition.h"
  
-std::vector<std::string> Recognition::split( const std::string& input, const std::string& delimiter )
+std::vector<std::string> Recognition::strsplit( const std::string& input, const std::string& delimiter )
 {
     std::vector<std::string> vec;
     if( input.empty() || delimiter.empty() )
@@ -22,7 +22,7 @@ std::vector<std::string> Recognition::split( const std::string& input, const std
     return vec;
 }
 
-auto Recognition::prepareInputLines( const std::string& fileName )
+std::vector<std::string> Recognition::prepareInputFileToLines( const std::string& fileName )
 {
     std::vector<std::string> vec;
     std::ifstream file( fileName );
@@ -97,11 +97,10 @@ bool Recognition::init( const std::string& folder, const std::string& operationF
         return false;
     }
     
-
-    operationList = prepareInputLines( folder + operationFile );
-    for( auto const& item : prepareInputLines( folder + questionsFile ) )
+    operationList = prepareInputFileToLines( folder + operationFile );
+    for( auto const& item : prepareInputFileToLines( folder + questionsFile ) )
     {
-        auto strArr = split( item, "=" );
+        auto strArr = strsplit( item, "=" );
         if( strArr.empty() || strArr.size() < 2 )
             continue;
         
@@ -112,31 +111,31 @@ bool Recognition::init( const std::string& folder, const std::string& operationF
         questions.insert( { strArr[0], opIter } );
     }
 
-    auto objectLines = prepareInputLines( folder + objectTypeListFile );
+    auto objectLines = prepareInputFileToLines( folder + objectTypeListFile );
     objectTypeList.reserve(objectLines.size());
 
     for( auto const& line : objectLines )
     {
-        auto lineArr = split( line, "=" ); // subject=operationList=subsubject
+        auto lineArr = strsplit( line, "=" ); // subject=operationList=subsubject
         if( lineArr.empty() || lineArr.size() < 2 ) continue;
         if( lineArr[1].empty()) continue;
 
-        auto objects = split( lineArr[1], "," );
+        auto objects = strsplit( lineArr[1], "," );
         objectsLinkMap.insert( {lineArr[0], objects} );
     }
 
-    auto subjectLines = prepareInputLines( folder + subjectListFile );
+    auto subjectLines = prepareInputFileToLines( folder + subjectListFile );
     subjectList.reserve( subjectLines.size() );
     for( auto const& line : subjectLines )
     {
-        auto lineArr = split( line, "=" ); // subject=operationList=subsubject
+        auto lineArr = strsplit( line, "=" ); // subject=operationList=subsubject
         if( lineArr.empty() || lineArr.size() < 2 ) continue;
         if( lineArr[1].empty()) continue;
 
         std::vector<std::string>::iterator operationIter;
         if( lineArr[1].find(",") != std::string::npos )
         {
-            auto operationArr = split( lineArr[1], "," );
+            auto operationArr = strsplit( lineArr[1], "," );
             if( operationArr.empty() || operationArr.size() < 2 )
                 continue;
 
@@ -172,7 +171,7 @@ bool Recognition::init( const std::string& folder, const std::string& operationF
 
             if( subsubject.find(",") != std::string::npos )
             {
-                auto subsubjectArr = split( subsubject, "," );
+                auto subsubjectArr = strsplit( subsubject, "," );
                 if( subsubjectArr.empty() || subsubjectArr.size() < 2 ) continue;
 
                 for( int index = 0; index < subsubjectArr.size(); ++ index )
@@ -209,7 +208,7 @@ std::string Recognition::recognize( const std::string& input )
         bool bret = find( input, question.first );
         if( bret ) // operation found
         {
-            str_vec_citer_t operationIter = question.second;
+            string_vector_citer operationIter = question.second;
             
             auto range = subjectLinkMap.equal_range( operationIter );
             for ( auto rangeIter = range.first; rangeIter != range.second; ++rangeIter )
@@ -225,7 +224,7 @@ std::string Recognition::recognize( const std::string& input )
                     tmp[0] = std::toupper( tmp[0] );
                     output += tmp;
 
-                    str_vec_citer_t subjectIter = rangeIter->second;
+                    string_vector_citer subjectIter = rangeIter->second;
                     range = objectTypeListLinkMap.equal_range( subjectIter );
                     for ( auto rangeIter = range.first; rangeIter != range.second; ++rangeIter )
                     {

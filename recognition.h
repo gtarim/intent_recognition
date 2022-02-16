@@ -22,22 +22,27 @@ public:
     std::string recognize( const std::string& input );
 
 private: // def and variables
-    using str_vec_t = std::vector<std::string>;
-    using str_vec_citer_t = std::vector<std::string>::const_iterator;
+    using string_vector = std::vector<std::string>;
+    using string_vector_citer = std::vector<std::string>::const_iterator;
 
-    str_vec_t operationList;
-    str_vec_t subjectList;
-    str_vec_t objectTypeList;
-    std::map<std::string,str_vec_citer_t> questions; // question, operationIter
-    std::multimap<str_vec_citer_t,str_vec_citer_t> subjectLinkMap; // operationIter, subjectIter
-    std::multimap<str_vec_citer_t,str_vec_citer_t> objectTypeListLinkMap; // subjectIter, objectTypeListIter
-    std::unordered_map<std::string,str_vec_t> objectsLinkMap; // objectTypeListIter, object
+    string_vector operationList;
+    string_vector subjectList;
+    string_vector objectTypeList;
+    std::map<std::string, string_vector_citer> questions; // question, operationIter
+    std::multimap<string_vector_citer, string_vector_citer> subjectLinkMap; // operationIter, subjectIter
+    std::multimap<string_vector_citer, string_vector_citer> objectTypeListLinkMap; // subjectIter, objectTypeListIter
+    std::unordered_map<std::string, string_vector> objectsLinkMap; // objectTypeListIter, object
  
  private: // functions
-    std::vector<std::string> split( const std::string& input, const std::string& delimiter );
-    auto prepareInputLines( const std::string& fileName );
+    std::vector<std::string> strsplit( const std::string& input, const std::string& delimiter );
+    std::vector<std::string> prepareInputFileToLines( const std::string& fileName );
     bool find( const std::string& input, const std::string& pattern );
     bool isFileExist( const std::string& filename ) const;
+
+private: // google test friend classes
+    friend class TestFixture_FindCorrection_Test;
+    friend class TestFixture_IsFileExist_Test;
+    friend class TestFixture_SplitLinesToVector_Test;
 };
 
 #endif // RECOGNITION_H

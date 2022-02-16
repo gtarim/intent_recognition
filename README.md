@@ -74,7 +74,7 @@ Data structure is little bit complicated. But everything is about for good perfo
 For memory consumption, I designed Iterator type of mapping algorithm.
 The structure is using iterator mapping for connecting two type of input. Because when we do that we dont need any more not prevented operation search. In this way it will spend less cpu load.
 
-![](/docs/structure.png "Data structure" )
+<img src="docs/structure.png" width="480" height="324">
 
 For now there is only two operation type is informing to intent to user (get and set). It stored in `OperationList` user can change in `inputs/operations.txt`
 
@@ -133,17 +133,13 @@ The benchmark results below by some iteration.
 |4|13.9ms|
 |4|14.7ms|
 
-
-
 Performance test result under below senario:
 - 220 input sentences
 - 120 pattern
 - search intance every for single pattern ( except std::regex )
 
 ![](/docs/perf_out.png "Performance output")
-- [Quick benchmark result](https://quick-bench.com/q/J21M9tvvgdb7VfIQ2Pb78cIQ_0w)
-
-whole recognition
+<img src="docs/perf_out.png" width="480" height="200">
 ### Future improvements
 - I change the data structure to xml or json format with their third party tools.
 - May be used great model with AI to recognition.

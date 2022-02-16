@@ -6,7 +6,7 @@
 * Installation
 * Run
 * Test
-* Data Structure
+* Project Structure
 * Algorithm
 * Performance results
 * Future improvements
@@ -80,18 +80,33 @@ For now there is only two operation type is informing to intent to user (get and
 
 `Questions` connected via `OperationsIter`, `OperationsIter` connected `SubjectList` via `SubjectIter`, `SubjectIter` connected `Objects` via `ObjectTypeIter`
 #### File Formats
+- Operations example usage is :
+```
+    <Operation1>
+    <Operation2>
+    Get
+    Set
+    ...
+```
 - Questions example pattern is :
 ```
-    <Question>=<Operation>
+    <Question1>=<Operation1>
     What is the=get
     Can you do=set
 ```      
 - Subjects example usage is :
 ```
-    <Subject>=<Operation1>,<Operation2>,...=<Object1>,<Object2>,...
+    <Subject1>=<Operation1>,<Operation2>,...=<ObjectType1>,<ObjectType2>,...
     fact=get
     temperature=get,set=city,car
     door=set,get=car
+```
+- Objects example usage is :
+```
+    <ObjectType1>=<Object1>,<Object2>,...
+    city=Paris,Berlin,Istanbul
+    car=Mercedes
+    dog=Samoyed,Husky
 ```
 
 ### Algorithm
@@ -122,7 +137,7 @@ Rabin-Karp supports multiple pattern search. Rabin-Karp's performance was too cl
 
 ### Performance results
 
-Whole project benchmark tested under 2,7 GHz Dual-Core Intel Core i5, 8GB RAM Macbook Pro 13.
+Whole project benchmark tested under 2,7 GHz Dual-Core Intel Core i5, 8GB RAM Macbook Pro 13. Google benchmark used for benchmarking.
 The benchmark results below by some iteration.
 
 |Iteration|Cpu Time|
@@ -138,8 +153,8 @@ Performance test result under below senario:
 - 120 pattern
 - search intance every for single pattern ( except std::regex )
 
-![](/docs/perf_out.png "Performance output")
-<img src="docs/perf_out.png" width="480" height="200">
+<img src="docs/perf_out.png" width="640" height="250">
+
 ### Future improvements
 - I change the data structure to xml or json format with their third party tools.
 - May be used great model with AI to recognition.

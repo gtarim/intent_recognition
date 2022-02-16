@@ -28,7 +28,7 @@ private: // def and variables
     string_vector operationList;
     string_vector subjectList;
     string_vector objectTypeList;
-    std::map<std::string, string_vector_citer> questions; // question, operationIter
+    std::unordered_map<std::string, string_vector_citer> questions; // question, operationIter
     std::multimap<string_vector_citer, string_vector_citer> subjectLinkMap; // operationIter, subjectIter
     std::multimap<string_vector_citer, string_vector_citer> objectTypeListLinkMap; // subjectIter, objectTypeListIter
     std::unordered_map<std::string, string_vector> objectsLinkMap; // objectTypeListIter, object

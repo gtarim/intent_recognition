@@ -39,27 +39,7 @@ std::vector<std::string> Recognition::prepareInputFileToLines( const std::string
 
 bool Recognition::find( const std::string& input, const std::string& pattern )
 {
-    bool bret = false;
-
-    // std::string str = input;
-    // std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c){ return std::tolower(c); }); // to change lower case. this method discarded in design.
-
-    auto p = strstr( input.c_str(), pattern.c_str() );
-    if( p )
-        bret = true;
-
-    return bret;
-}
-
-bool Recognition::isFileExist( const std::string& filename ) const
-{
-    bool bret = false;
-    std::ifstream file( filename.c_str());
-
-    if ( file) {
-        bret = true;
-    }
-    return bret;
+    return strstr( input.c_str(), pattern.c_str() );
 }
 
 bool Recognition::init( const std::string& folder, const std::string& operationFile, const std::string& questionsFile, const std::string& subjectListFile, const std::string& objectTypeListFile )
@@ -69,29 +49,25 @@ bool Recognition::init( const std::string& folder, const std::string& operationF
         return false;
     }
 
-    bool bret = isFileExist( folder + operationFile );
-    if( !bret )
+    if( !std::filesystem::exists( folder + operationFile ) )
     {
         std::cerr << "error : operation file couldn't file at : " << folder + operationFile << "\n";
         return false;
     }
     
-    bret = isFileExist( folder + questionsFile );
-    if( !bret )
+    if( !std::filesystem::exists( folder + questionsFile ) )
     {
         std::cerr << "error : questions file couldn't file at : " << folder + questionsFile << "\n";
         return false;
     }
     
-    bret = isFileExist( folder + subjectListFile );
-    if( !bret )
+    if( !std::filesystem::exists( folder + subjectListFile ) )
     {
         std::cerr << "error : subjects file couldn't file at : " << folder + subjectListFile << "\n";
         return false;
     }
 
-    bret = isFileExist( folder + objectTypeListFile );
-    if( !bret )
+    if( !std::filesystem::exists( folder + objectTypeListFile ) )
     {
         std::cerr << "error : objects file couldn't file at : " << folder + objectTypeListFile << "\n";
         return false;

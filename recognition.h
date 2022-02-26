@@ -37,11 +37,9 @@ private: // def and variables
     std::vector<std::string> strsplit( const std::string& input, const std::string& delimiter );
     std::vector<std::string> prepareInputFileToLines( const std::string& fileName );
     bool find( const std::string& input, const std::string& pattern );
-    bool isFileExist( const std::string& filename ) const;
 
 private: // google test friend classes
     friend class TestFixture_FindCorrection_Test;
-    friend class TestFixture_IsFileExist_Test;
     friend class TestFixture_SplitLinesToVector_Test;
 };
 

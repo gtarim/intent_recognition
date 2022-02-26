@@ -8,15 +8,6 @@ struct TestFixture : public ::testing::Test
     void TearDown() override {}
 };
 
-TEST_F( TestFixture, IsFileExist )
-{
-    bool ret = recognition.isFileExist( "./test.cpp" );
-    EXPECT_EQ( ret, true );
-
-    ret = recognition.isFileExist( "asd.txt" );
-    EXPECT_NE( ret, true );
-}
-
 TEST_F( TestFixture, FindCorrection )
 {
     bool ret = recognition.find( "This is a test message", "message" );

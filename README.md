@@ -1,5 +1,5 @@
 # Intent Recognition
-
+The project was developed for a week in challenging situation.
 ### Contents
 * Intro
 * TL;DR
@@ -19,6 +19,8 @@ It is mainly written in C++ 17+ For configuration CMake is employed. Software de
 Only hand-written source code. Didn't used any third-party lib for depencencies. (except gtest).
 
 Tool gets input sequencely.
+
+**Note: The tool focuses is mostly about performance.**
 
 ### TL;DR
 The tool searches patterns in given inputs to find exact intent. It is too simple, client should give inputs in runtime. If you need more generic intent result, the tool needs more patterns and input types to recognize (in inputs folder).
@@ -159,3 +161,5 @@ Performance test result under below senario:
 - I change the data structure to xml or json format with their third party tools.
 - May be used great model with AI to recognition.
 - Change tool syncronized to async.
+- find algorithm can possible change to async executing.
+- data structure can move to new structure. So i can be possible to more readable code.
